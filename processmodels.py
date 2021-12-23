@@ -16,11 +16,11 @@ for i, type in enumerate(types):
             mesh.write(newfile)
         mesh = PyntCloud.from_file(newfile)
         pointcloud = np.expand_dims(np.array(mesh.get_sample("mesh_random", n=20000)), axis=0)
-        n = 20
+        n = 10
         rotarray = np.array([[np.cos(2*np.pi/n), -np.sin(2*np.pi/n), 0],
                              [np.sin(2*np.pi/n), np.cos(2*np.pi/n), 0],
                              [0, 0, 1]])
-        for i in range(n):
+        for _ in range(n):
             models.append(pointcloud)
             pointcloud = np.matmul(pointcloud, rotarray)
     models = np.concatenate(models)
